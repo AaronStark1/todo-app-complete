@@ -1,0 +1,52 @@
+<div class="todo-container">
+  <nav class="navbar">
+    <div class="nav-content">
+      <h1>My Todos</h1>
+      <div class="nav-right">
+        <span class="user-name">Hello, {{ userName }}!</span>
+        <button class="btn-logout" (click)="logout()">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <div class="header-section">
+      <h2>Your Daily Tasks</h2>
+      <button class="btn-add" (click)="addTodo()">+ Add New Todo</button>
+    </div>
+
+    <div class="loading" *ngIf="loading">Loading todos...</div>
+
+    <div class="empty-state" *ngIf="!loading && todos.length === 0">
+      <div class="empty-icon">📝</div>
+      <h3>No todos yet!</h3>
+      <p>Start by adding your first task</p>
+    </div>
+
+    <div class="todo-grid" *ngIf="!loading && todos.length > 0">
+      <div class="todo-card" *ngFor="let todo of todos" [class.overdue]="isOverdue(todo.dueDate)">
+        <div class="todo-header">
+          <h3>{{ todo.title }}</h3>
+          <span class="status-badge" [ngClass]="getStatusClass(todo.status)">
+            {{ todo.status }}
+          </span>
+        </div>
+        
+        <p class="todo-description">{{ todo.description }}</p>
+        
+        <div class="todo-footer">
+          <div class="due-date">
+            <span class="icon">📅</span>
+            <span>{{ todo.dueDate | date: 'MMM d, y' }}</span>
+            <span class="overdue-label" *ngIf="isOverdue(todo.dueDate)">⚠️ Overdue</span>
+          </div>
+          
+          <div class="todo-actions">
+            <button class="btn-edit" (click)="editTodo(todo.id)" title="Edit">✏️</button>
+            <button class="btn-delete" (click)="deleteTodo(todo.id)" title="Delete">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

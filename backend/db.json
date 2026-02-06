@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "name": "user1",
+      "email": "user1@mail.com",
+      "password": "user123",
+      "id": 1
+    }
+  ],
+  "todos": [
+    {
+      "title": "Cut the vegetables",
+      "description": "Slice onions, tomato and carrot",
+      "dueDate": "2026-02-10",
+      "status": "pending",
+      "userId": 1,
+      "id": 1
+    }
+  ]
+}
